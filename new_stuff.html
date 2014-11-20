@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<input id="fileLoader" type="file"/>
+<img id="basketball"/>
+<img id="loadedImg" src=""/>
+<canvas id="canvas"></canvas>
+<script>
+
+    //todo: write a directive which reads image selected image files and prints them to the browser
+    document.getElementById('fileLoader').addEventListener('change', function(){
+
+        console.log(this.files);
+
+        var reader = new FileReader();
+
+
+        var file = this.files[0];
+        console.log(file);
+
+
+        reader.readAsDataURL(file);
+
+        reader.addEventListener('loadend', function(){
+            console.log('test');
+        });
+
+        var image = document.getElementById('loadedImg');
+        image.setAttribute('src', 'img/ball.png');
+    });
+</script>
+</body>
+</html>

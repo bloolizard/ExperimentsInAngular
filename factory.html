@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+</head>
+<body ng-controller="myController">
+
+{{test}}
+
+<script>
+
+angular.module('myApp',[])
+.factory('User', function($http){ //injectables go here
+    var backendUrl = "http://localhost:3000";
+    var service = {
+        //our factory definition
+        user: {},
+        setName: function(newName){
+            service.user['name'] = newName;
+        },
+        setEmail: function(newEmail){
+            service.user['email'] = newEmail;
+        },
+        save: function(){
+            console.log('awesome');
+            return $http.post(backendUrl + '/users', {
+                user: service.user
+            });
+        }
+    };
+    return service;
+})
+.controller("myController", function($scope, User){
+    $scope.saveUser = User.save;
+});
+</script>
+</body>
+</html>

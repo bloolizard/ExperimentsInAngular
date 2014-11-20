@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+</head>
+<body>
+<div class="container" ng-controller="MainCtrl">
+    <h1>Current Votes: {{ votes }}</h1>
+    <hr/>
+    <h3>Isolate Expression Scope</h3>
+    <div class="vote-container">
+        <vote label="100" vote-up="incremementHundred()" vote-down="decrementHundred()"></vote>
+        <vote label="10" vote-up="incremementTen()" vote-down="decrementTen()"></vote>
+        <vote label="1" vote-up="incremementOne()" vote-down="decrementOne()"></vote>
+    </div>
+    <hr/>
+    <h3>Isolate Expression Scope With Variables</h3>
+</div>
+{{test}}
+
+<script>
+angular.module('myApp',[]).controller("myController", function($scope){
+    $scope.test = 'Hello';
+});
+</script>
+</body>
+</html>

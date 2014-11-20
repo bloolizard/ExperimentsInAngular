@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<img id="fileImage" src="" alt=""/>
+<script>
+    function getImage(path){
+        return new Promise(
+                function(resolve, reject){
+                    var img = new Image();
+                    img.src = path;
+                    img.addEventListener('load', function(){
+                        resolve(path);
+                    });
+
+                    img.addEventListener('error', function(){
+                        reject(console.log('Not awesome'));
+
+                    });
+                }
+        );
+    }
+
+    getImage('img/ball.png').then(function(data){
+        document.getElementById('fileImage').setAttribute('src', data);
+    }, function(){
+
+    });
+
+//    todo: Promise.all
+</script>
+</body>
+</html>
